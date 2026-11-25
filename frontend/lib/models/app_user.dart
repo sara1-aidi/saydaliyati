@@ -1,0 +1,26 @@
+/// The authenticated user returned by the API (Exercise 1).
+class AppUser {
+  const AppUser({
+    required this.id,
+    required this.name,
+    required this.email,
+    required this.role,
+    required this.token,
+  });
+
+  final int id;
+  final String name;
+  final String email;
+  final String role; // 'client' | 'pharmacist'
+  final String token;
+
+  bool get isPharmacist => role == 'pharmacist';
+
+  factory AppUser.fromJson(Map<String, dynamic> json) => AppUser(
+        id: (json['id'] as num).toInt(),
+        name: json['name'] as String,
+        email: (json['email'] ?? '') as String,
+        role: json['role'] as String,
+        token: json['token'] as String,
+      );
+}
